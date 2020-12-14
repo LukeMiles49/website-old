@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  website:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - website-data:/data
+
+volumes:
+  website-data:
