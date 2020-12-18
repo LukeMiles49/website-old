@@ -2,7 +2,7 @@ use std::net::{TcpListener};
 use std::io::{Write};
 
 fn main() {
-	let listener = TcpListener::bind("localhost:80").unwrap();
+	let listener = TcpListener::bind("0.0.0.0:80").unwrap();
 	
 	println!("Hello, Docker!");
 	

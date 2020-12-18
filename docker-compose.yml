@@ -3,7 +3,31 @@ version: '3.7'
 services:
   website:
     build: .
-    ports:
-      - 80:80
+    networks:
+      - website-network
     volumes:
       - /media/data/website:/data
+  
+  swag:
+    image: linuxserver/swag:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - URL=lukem.dev
+      # - SUBDOMAINS=www,
+      - VALIDATION=http
+      - EMAIL=luke.49@live.co.uk
+      - STAGING=false
+    ports:
+      - 443:443
+      - 80:80
+    networks:
+      - website-network
+    volumes:
+      - ./config:/config
+      - /media/data/keys:/config/keys
+
+networks:
+  website-network:
+    driver: bridge
